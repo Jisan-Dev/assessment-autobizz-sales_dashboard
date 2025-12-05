@@ -228,12 +228,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           <button
             key={year}
             onClick={() => handleYearSelect(year)}
-            className={`p-2 rounded-lg text-sm font-medium transition-colors
-                        ${
-                          viewDate.getFullYear() === year
-                            ? "bg-indigo-600 text-white shadow-md"
-                            : "hover:bg-slate-100 text-slate-700 hover:text-indigo-600"
-                        }`}
+            className={`p-2 rounded-lg text-sm font-medium transition-colors ${
+              viewDate.getFullYear() === year
+                ? "bg-indigo-600 text-white shadow-md"
+                : "hover:bg-slate-100 text-slate-700 hover:text-indigo-600"
+            }`}
           >
             {year}
           </button>
@@ -250,13 +249,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
       <div className="relative">
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className={`w-full pl-10 pr-9 py-2.5 bg-slate-50 border rounded-xl text-sm font-medium cursor-pointer flex items-center transition-all shadow-sm select-none
-                ${
-                  isOpen
-                    ? "ring-2 ring-indigo-500/20 border-indigo-500 bg-white"
-                    : "border-slate-200 text-slate-700 hover:bg-white hover:border-slate-300"
-                }
-            `}
+          className={`w-full pl-10 pr-9 py-2.5 bg-slate-50 border rounded-xl text-sm font-medium cursor-pointer flex items-center transition-all shadow-sm select-none ${
+            isOpen
+              ? "ring-2 ring-indigo-500/20 border-indigo-500 bg-white"
+              : "border-slate-200 text-slate-700 hover:bg-white hover:border-slate-300"
+          }`}
         >
           <CalendarIcon
             className={`absolute left-3 top-2.5 transition-colors ${
@@ -299,23 +296,21 @@ export const DatePicker: React.FC<DatePickerProps> = ({
               <div className="flex items-center gap-1">
                 <button
                   onClick={() => setViewMode("months")}
-                  className={`px-2 py-1 rounded-md text-sm font-bold transition-colors
-                                ${
-                                  viewMode === "months"
-                                    ? "bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200"
-                                    : "text-slate-800 hover:bg-slate-100"
-                                }`}
+                  className={`px-2 py-1 rounded-md text-sm font-bold transition-colors ${
+                    viewMode === "months"
+                      ? "bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200"
+                      : "text-slate-800 hover:bg-slate-100"
+                  }`}
                 >
                   {monthNames[viewDate.getMonth()]}
                 </button>
                 <button
                   onClick={() => setViewMode("years")}
-                  className={`px-2 py-1 rounded-md text-sm font-bold transition-colors
-                                ${
-                                  viewMode === "years"
-                                    ? "bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200"
-                                    : "text-slate-800 hover:bg-slate-100"
-                                }`}
+                  className={`px-2 py-1 rounded-md text-sm font-bold transition-colors ${
+                    viewMode === "years"
+                      ? "bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200"
+                      : "text-slate-800 hover:bg-slate-100"
+                  }`}
                 >
                   {viewDate.getFullYear()}
                 </button>

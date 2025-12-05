@@ -5,3 +5,8 @@ export interface FilterState {
   email: string;
   phone: string;
 }
+
+export interface AuthResponse {
+  token: string;
+  expire: number;
+}

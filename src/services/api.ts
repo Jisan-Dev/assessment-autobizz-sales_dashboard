@@ -1,7 +1,6 @@
 import { API_BASE_URL } from "../constants";
 import type {
   AuthResponse,
-  CursorProps,
   FilterState,
   SalesResponse,
   SortProps,
@@ -42,7 +41,7 @@ class ApiService {
   getSales = async (
     filters: FilterState,
     sort: SortProps,
-    cursor: CursorProps
+    cursor?: { type: "before" | "after"; token: string }
   ): Promise<SalesResponse> => {
     if (!this.token) await this.authorize();
 

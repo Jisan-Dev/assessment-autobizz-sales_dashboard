@@ -42,8 +42,3 @@ export interface SortProps {
   column: "price" | "date";
   direction: "asc" | "desc";
 }
-
-export interface CursorProps {
-  type: "before" | "after";
-  token: string;
-}

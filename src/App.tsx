@@ -1,8 +1,11 @@
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import Filters from "./components/filters";
 import Header from "./components/header";
 import { DEFAULT_FILTERS } from "./constants";
-import type { FilterState } from "./types";
+import { useDebounce } from "./hooks/useDebounce";
+import { api } from "./services/api";
+import type { FilterState, SortProps } from "./types";
 
 function App() {
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
@@ -10,8 +13,30 @@ function App() {
   const handleFilterChange = (key: keyof FilterState, value: string) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
     // Reset pagination on filter change
-    // setPageCursor({ token: undefined, type: null });
+    setPageCursor(undefined);
   };
+
+  // Debounce filters to avoid refetching on every keystroke
+  const debouncedFilters = useDebounce(filters, 500);
+
+  // Sorting State
+  const [sort, setSort] = useState<SortProps>({
+    column: "date",
+    direction: "desc",
+  });
+
+  // Pagination State (Cursor based)
+  const [pageCursor, setPageCursor] = useState<
+    { token: string; type: "before" | "after" } | undefined
+  >(undefined);
+
+  // 4. Data Fetching with React Query
+  const { data, isLoading, isError, error } = useQuery({
+    // Unique key for caching based on all parameters
+    queryKey: ["sales", debouncedFilters, sort, pageCursor],
+    queryFn: () => api.getSales(debouncedFilters, sort, pageCursor),
+    // placeholderData: keepPreviousData,
+  });
 
   return (
     <>

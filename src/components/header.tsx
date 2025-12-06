@@ -1,21 +1,20 @@
 import { LayoutDashboard } from "lucide-react";
-
+import logo from "/main-logo.svg";
 export default function Header() {
   return (
     <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div className="flex items-center gap-3">
-            <div className="bg-gradient-to-br from-indigo-600 to-violet-600 text-white p-2 rounded-xl shadow-md shadow-indigo-200">
+          <div className="flex items-center gap-2">
+            <div className="bg-linear-to-br from-slate-500 to-violet-600 text-white p-2 rounded-xl shadow-md shadow-indigo-200">
               <LayoutDashboard size={20} />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-slate-900 tracking-tight leading-none">
-                AutoBizz
-              </h1>
-              <span className="text-xs font-medium text-slate-500 tracking-wide">
-                SALES INTELLIGENCE
-              </span>
+              <img
+                src={logo}
+                alt="AutoBizz Logo"
+                className="bg-linear-to-br from-slate-500 to-violet-600 p-2 rounded-xl h-9"
+              />
             </div>
           </div>
 

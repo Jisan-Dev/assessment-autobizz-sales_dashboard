@@ -72,6 +72,7 @@ const SalesChart: React.FC<SalesChartProps> = ({ data }) => {
               tickLine={false}
               axisLine={false}
               tickMargin={10}
+              minTickGap={30}
             />
             <YAxis
               tick={{ fill: "#94a3b8", fontSize: 11, fontWeight: 500 }}

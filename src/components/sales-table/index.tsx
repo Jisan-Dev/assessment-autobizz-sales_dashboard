@@ -39,9 +39,9 @@ export default function SalesTable({
   };
 
   return (
-    <div className="flex flex-col rounded-2xl border border-slate-100 bg-white shadow-sm ring-1 ring-black/2 overflow-hidden">
-      <div className="overflow-x-auto scrollbar-hide">
-        <table className="min-w-full divide-y divide-slate-100">
+    <div className="flex flex-col rounded-2xl border border-slate-100 bg-white shadow-sm ring-1  ring-black/2  ">
+      <div className="inline-block! min-w-full ">
+        <table className="min-w-full divide-y divide-slate-100 whitespace-nowrap">
           <TableHeader sort={sort} onSortChange={onSortChange} />
 
           <tbody className="divide-y divide-slate-100 bg-white">
@@ -112,16 +112,20 @@ export default function SalesTable({
               ))
             )}
           </tbody>
+          <tfoot>
+            <tr>
+              <td scope="row" colSpan={4}>
+                <Pagination
+                  data={data}
+                  isLoading={isLoading}
+                  pagination={pagination}
+                  onPageChange={onPageChange}
+                />
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
-
-      {/* Pagination */}
-      <Pagination
-        data={data}
-        isLoading={isLoading}
-        pagination={pagination}
-        onPageChange={onPageChange}
-      />
     </div>
   );
 }

@@ -70,7 +70,7 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-slate-50 pb-20 font-sans text-slate-900">
+      <div className="min-h-screen bg-slate-50 pb-20 font-sans text-slate-900 overflow-auto">
         <Header />
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
@@ -122,7 +122,7 @@ function App() {
               </div>
 
               {/* Table */}
-              <div className="lg:col-span-3">
+              <div className="lg:col-span-3 overflow-x-auto">
                 <section aria-label="Sales Data Table">
                   <div className="flex items-center justify-between mb-5 px-1">
                     <h2 className="text-lg font-bold text-slate-900 tracking-tight">

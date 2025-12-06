@@ -26,8 +26,8 @@ export interface TotalDailySale {
 }
 
 export interface SalesResult {
-  totalSales: TotalDailySale[];
-  sales: Sale[];
+  TotalSales: TotalDailySale[];
+  Sales: Sale[];
 }
 
 export interface SalesResponse {
@@ -41,4 +41,9 @@ export interface SalesResponse {
 export interface SortProps {
   column: "price" | "date";
   direction: "asc" | "desc";
+}
+
+export interface PaginationMeta {
+  before?: string;
+  after?: string;
 }

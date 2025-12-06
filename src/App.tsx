@@ -1,7 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
 import Filters from "./components/filters";
 import Header from "./components/header";
+import SalesChart from "./components/sales-chart";
+import SalesTable from "./components/sales-table";
 import { DEFAULT_FILTERS } from "./constants";
 import { useDebounce } from "./hooks/useDebounce";
 import { api } from "./services/api";
@@ -30,13 +33,40 @@ function App() {
     { token: string; type: "before" | "after" } | undefined
   >(undefined);
 
-  // 4. Data Fetching with React Query
+  // Data Fetching with React Query
   const { data, isLoading, isError, error } = useQuery({
     // Unique key for caching based on all parameters
     queryKey: ["sales", debouncedFilters, sort, pageCursor],
     queryFn: () => api.getSales(debouncedFilters, sort, pageCursor),
     // placeholderData: keepPreviousData,
   });
+
+  const handleSortChange = (column: "date" | "price") => {
+    setSort((prev) => ({
+      column,
+      direction:
+        prev.column === column && prev.direction === "asc" ? "desc" : "asc",
+    }));
+  };
+
+  const handlePageChange = (type: "before" | "after", token: string) => {
+    setPageCursor({ type, token });
+    // window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Auth Initialization
+  useEffect(() => {
+    const initAuth = async () => {
+      if (!api.loadToken()) {
+        try {
+          await api.authorize();
+        } catch (e) {
+          console.error("Failed to authorize on startup", e);
+        }
+      }
+    };
+    initAuth();
+  }, []);
 
   return (
     <>
@@ -56,6 +86,67 @@ function App() {
 
           {/* Filter section */}
           <Filters filters={filters} onFilterChange={handleFilterChange} />
+
+          {/* Error State */}
+          {isError && (
+            <div className="mb-6 rounded-xl bg-red-50 p-4 text-red-700 border border-red-100 shadow-sm flex items-start gap-3">
+              <div className="mt-0.5">⚠️</div>
+              <div>
+                <p className="font-semibold">Unable to load data</p>
+                <p className="text-sm opacity-90">{(error as Error).message}</p>
+              </div>
+            </div>
+          )}
+
+          {!isError && (
+            <div className="grid gap-8 lg:grid-cols-3">
+              {/* Chart */}
+              <div className="lg:col-span-3">
+                <section
+                  aria-label="Sales Chart"
+                  className="transition-all duration-300 ease-in-out"
+                >
+                  {isLoading && !data ? (
+                    <div className="flex h-[400px] w-full items-center justify-center rounded-2xl bg-white border border-slate-100 shadow-sm">
+                      <div className="flex flex-col items-center gap-2 text-indigo-600">
+                        <Loader2 className="h-8 w-8 animate-spin" />
+                        <span className="text-sm font-medium">
+                          Loading Analytics...
+                        </span>
+                      </div>
+                    </div>
+                  ) : (
+                    <SalesChart data={data?.results.TotalSales || []} />
+                  )}
+                </section>
+              </div>
+
+              {/* Table */}
+              <div className="lg:col-span-3">
+                <section aria-label="Sales Data Table">
+                  <div className="flex items-center justify-between mb-5 px-1">
+                    <h2 className="text-lg font-bold text-slate-900 tracking-tight">
+                      Recent Transactions
+                    </h2>
+                    {isLoading && (
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">
+                        <Loader2 className="h-3 w-3 animate-spin" /> Updating
+                      </span>
+                    )}
+                  </div>
+
+                  <SalesTable
+                    data={data?.results.Sales || []}
+                    isLoading={isLoading && !data}
+                    sort={sort}
+                    onSortChange={handleSortChange}
+                    pagination={data?.pagination || {}}
+                    onPageChange={handlePageChange}
+                  />
+                </section>
+              </div>
+            </div>
+          )}
         </main>
       </div>
     </>

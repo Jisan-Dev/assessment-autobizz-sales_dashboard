@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Loader2 } from "lucide-react";
+import { Loader2, RefreshCw } from "lucide-react";
 import { useEffect, useState } from "react";
 import Filters from "./components/filters";
 import Header from "./components/header";
@@ -51,7 +51,7 @@ function App() {
 
   const handlePageChange = (type: "before" | "after", token: string) => {
     setPageCursor({ type, token });
-    // window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 800, behavior: "smooth" });
   };
 
   // Auth Initialization
@@ -145,6 +145,13 @@ function App() {
                   />
                 </section>
               </div>
+            </div>
+          )}
+
+          {isLoading && (
+            <div className="fixed bottom-6 right-6 bg-slate-900 text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-3 z-50 text-sm font-medium animate-in fade-in slide-in-from-bottom-4">
+              <RefreshCw className="animate-spin" size={16} />
+              Loading Data...
             </div>
           )}
         </main>

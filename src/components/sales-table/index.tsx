@@ -44,7 +44,7 @@ export default function SalesTable({
 
           <tbody className="divide-y divide-slate-100 bg-white">
             {isLoading ? (
-              Array.from({ length: 6 }).map((_, i) => (
+              Array.from({ length: 50 }).map((_, i) => (
                 <tr key={i} className="animate-pulse">
                   <td className="px-6 py-4">
                     <div className="h-4 w-32 rounded-full bg-slate-100"></div>

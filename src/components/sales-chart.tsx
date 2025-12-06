@@ -36,7 +36,7 @@ const SalesChart: React.FC<SalesChartProps> = ({ data }) => {
   }
 
   return (
-    <div className="h-[400px] w-full rounded-2xl bg-white p-6 shadow-sm border border-slate-100 ring-1 ring-black/2">
+    <div className="h-[420px] w-full rounded-2xl bg-white p-6 shadow-sm border border-slate-100 ring-1 ring-black/2 pb-5!">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h3 className="text-lg font-bold text-slate-800">Total Revenue</h3>

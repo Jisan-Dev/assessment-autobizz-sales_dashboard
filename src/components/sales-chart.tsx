@@ -1,3 +1,4 @@
+import { TrendingUp } from "lucide-react";
 import React, { useMemo } from "react";
 import {
   Area,
@@ -36,16 +37,26 @@ const SalesChart: React.FC<SalesChartProps> = ({ data }) => {
   }
 
   return (
-    <div className="h-[420px] w-full rounded-2xl bg-white p-6 shadow-sm border border-slate-100 ring-1 ring-black/2 pb-5!">
+    <div className="min-h-[420px] w-full rounded-2xl bg-white max-sm:py-6 p-4 sm:p-6 shadow-sm border border-slate-100 ring-1 ring-black/2">
       <div className="flex items-center justify-between mb-8">
-        <div>
-          <h3 className="text-lg font-bold text-slate-800">Total Revenue</h3>
+        <div className="max-sm:max-w-40">
+          <h3 className="text-lg font-bold text-slate-800">Sales Trend</h3>
           <p className="text-sm text-slate-500">Sales performance over time</p>
         </div>
-        <div className="text-right">
-          <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
-            ${totalRevenue.toLocaleString()}
-          </h3>
+        <div className="text-left sm:text-right">
+          <div className="flex items-center gap-2 sm:justify-end">
+            <span className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-0.5">
+              Total Revenue
+            </span>
+            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-700">
+              <TrendingUp size={12} className="mr-1" />
+            </span>
+          </div>
+          <div>
+            <span className="text-2xl font-black text-slate-900 tracking-tight">
+              ${totalRevenue.toLocaleString()}
+            </span>
+          </div>
         </div>
       </div>
 

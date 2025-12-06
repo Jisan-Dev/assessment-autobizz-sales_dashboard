@@ -1,6 +1,7 @@
 import { Package } from "lucide-react";
 import type { PaginationMeta, Sale, SortProps } from "../../types";
 import Pagination from "./pagination";
+import Skeleton from "./skeleton";
 import TableHeader from "./table-header";
 
 interface SalesTableProps {
@@ -44,25 +45,7 @@ export default function SalesTable({
 
           <tbody className="divide-y divide-slate-100 bg-white">
             {isLoading ? (
-              Array.from({ length: 50 }).map((_, i) => (
-                <tr key={i} className="animate-pulse">
-                  <td className="px-6 py-4">
-                    <div className="h-4 w-32 rounded-full bg-slate-100"></div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="h-4 w-24 rounded-full bg-slate-100"></div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="space-y-2">
-                      <div className="h-4 w-32 rounded-full bg-slate-100"></div>
-                      <div className="h-3 w-20 rounded-full bg-slate-50"></div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="h-4 w-16 rounded-full bg-slate-100 ml-auto"></div>
-                  </td>
-                </tr>
-              ))
+              <Skeleton />
             ) : data.length === 0 ? (
               <tr>
                 <td colSpan={4} className="px-6 py-12 text-center">

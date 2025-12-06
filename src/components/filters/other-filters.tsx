@@ -11,7 +11,7 @@ export default function OtherFilters({ filters, onFilterChange }: FilterProps) {
         </label>
         <div className="relative">
           <DollarSign
-            className="absolute left-3 top-2.5 text-slate-400 group-focus-within:text-indigo-500 transition-colors"
+            className="absolute left-3 top-3 text-slate-400 group-focus-within:text-indigo-500 transition-colors"
             size={16}
           />
           <input
@@ -32,7 +32,7 @@ export default function OtherFilters({ filters, onFilterChange }: FilterProps) {
         </label>
         <div className="relative">
           <Mail
-            className="absolute left-3 top-2.5 text-slate-400 group-focus-within:text-indigo-500 transition-colors"
+            className="absolute left-3 top-3 text-slate-400 group-focus-within:text-indigo-500 transition-colors"
             size={16}
           />
           <input
@@ -52,7 +52,7 @@ export default function OtherFilters({ filters, onFilterChange }: FilterProps) {
         </label>
         <div className="relative">
           <Phone
-            className="absolute left-3 top-2.5 text-slate-400 group-focus-within:text-indigo-500 transition-colors"
+            className="absolute left-3 top-3 text-slate-400 group-focus-within:text-indigo-500 transition-colors"
             size={16}
           />
           <input

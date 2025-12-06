@@ -256,7 +256,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           }`}
         >
           <CalendarIcon
-            className={`absolute left-3 top-2.5 transition-colors ${
+            className={`absolute left-3 top-3 transition-colors ${
               isOpen ? "text-indigo-500" : "text-slate-400"
             }`}
             size={18}

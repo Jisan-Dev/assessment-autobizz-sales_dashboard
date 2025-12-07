@@ -72,7 +72,11 @@ class ApiService {
         }
       );
 
-      if (response.status === 401 || response.status === 403) {
+      if (
+        response.status === 401 ||
+        response.status === 403 ||
+        response.status === 500
+      ) {
         // Token might be expired, try to refresh once
         const newToken = await this.authorize();
         if (!newToken) throw new Error("Authorization failed");

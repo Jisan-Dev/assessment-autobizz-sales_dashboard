@@ -51,7 +51,12 @@ function App() {
 
   const handlePageChange = (type: "before" | "after", token: string) => {
     setPageCursor({ type, token });
-    window.scrollTo({ top: 840, behavior: "smooth" });
+    setTimeout(() => {
+      window.scrollTo({
+        top: 870,
+        behavior: "smooth",
+      });
+    }, 100);
   };
 
   // Auth Initialization
